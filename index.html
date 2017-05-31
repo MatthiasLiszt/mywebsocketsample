@@ -1,0 +1,58 @@
+<html>
+  <title>web socket server test </title>
+  <script src="jquery.min.js" type="text/javascript"></script>
+  <script>
+  var message2server=0;
+  var serverOn=false;
+  var Server;
+
+  function send2Server(){
+       message2server="hello";  
+       console.log("hello button pressed");
+       if(serverOn){socket.emit('general',message2server);}
+      }
+  </script>
+  <body>
+    <p id='output'>...</p>
+    <input type="button" id="toServer" value="hello" ></input>
+
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io();
+      var el = document.getElementById('output');
+      
+      //document.getElementById('toServer').onclick = send2Server();
+        
+      console.log('script running');
+
+      // socket listening on channel 'general'   
+      socket.on('general', function(x) {
+        el.innerHTML = 'server message: ' + x.message;
+        console.log('socket.on activated');
+        console.log(x.message);
+        /*
+        if(message2server!=0)
+         {socket.emit('general',message2server);
+          message2server=0;
+         }
+        */
+        Server=socket;
+        serverOn=true;
+      });
+
+       
+ 
+          
+    </script>
+    <script>
+       $('#toServer').click(function(){
+         message2server="hello";  
+         console.log("hello button pressed");
+         if(serverOn){socket.emit('general',message2server);}      
+        }); 
+    </script>
+  
+  </body>
+
+</html>

@@ -1,0 +1,14 @@
+<html>
+<script src="jquery.min.js"></script>
+<script>
+function handle(){
+ console.log("button pressed");
+}
+
+</script>
+<body>
+<input type="button" value="click!" onClick="handle()"></input>
+<input type="button" id="magic" value="jQuery" ></input>
+<script>$('#magic').click(function(){console.log("jQuery button pressed");});</script>
+</body>
+</html>
